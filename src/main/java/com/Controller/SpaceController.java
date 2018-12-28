@@ -55,7 +55,7 @@ public class SpaceController {
      * @return
      */
     @RequestMapping(value = "space/delete",method = RequestMethod.POST)
-    public ListResponse spaceDelete(@RequestParam("name") String name){
+    public ListResponse spaceDelete(@RequestParam("name") String name) throws Exception {
         spaceService.delete(name);
         ListResponse deleteResponse = new ListResponse();
         deleteResponse.setDocList(Common.docList);

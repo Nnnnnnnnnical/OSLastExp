@@ -3,10 +3,8 @@ package com.Service;
 
 import com.Common.Common;
 import com.Entity.Doc;
-import org.omg.CORBA.COMM_FAILURE;
 import org.springframework.stereotype.Service;
 
-import java.rmi.server.ExportException;
 
 @Service
 public class SpaceService {
@@ -42,7 +40,7 @@ public class SpaceService {
     }
 
     //删除文件
-    public void delete(String name){
+    public void delete(String name) throws Exception {
 
         int size=0;
         for(int i =0;i<Common.docList.size();i++){
@@ -55,6 +53,12 @@ public class SpaceService {
                 Common.docList.remove(Common.docList.get(i));
                 break;
             }
+            if(i==Common.docList.size()-1){
+                throw new Exception("没有此文件");
+            }
+        }
+        if(size == 0){
+            throw new Exception("没有存储任何文件");
         }
 
         Common.disk.setlSize(Common.disk.getlSize()+size);
