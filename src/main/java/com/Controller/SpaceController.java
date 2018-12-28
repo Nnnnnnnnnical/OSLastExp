@@ -19,6 +19,10 @@ public class SpaceController {
     @Autowired
     private InitTask initTask;
 
+    /**
+     * 初始化磁盘
+     * @return
+     */
     @RequestMapping(value = "space/init",method = RequestMethod.POST)
     public ListResponse spaceInit(){
         initTask.initTask();
